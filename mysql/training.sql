@@ -157,11 +157,22 @@ from users u inner join orders o on u.id = o.user_id group by u.id order by user
  else sum(od.product_qty) end as num
 from products p left outer join order_details od on p.id = od.product_id group by p.id; */
 
-select p.id product_id, p.name, sum(od.product_qty) product_qty,
+/* select p.id product_id, p.name, sum(od.product_qty) product_qty,
 case
  when sum(od.product_qty) >= 20 then 'A'
  when sum(od.product_qty) >= 10 then 'B'
  else 'C'
 end as product_rank
-from products p left outer join order_details od on p.id = od.product_id group by p.id order by product_rank;
+from products p left outer join order_details od on p.id = od.product_id group by p.id order by product_rank; */
+
+-- 演習問題
+-- select round(avg(amount), 0) from orders;
+-- select date_format(order_time, '%Y%m') order_year_month, round(avg(amount))
+-- from orders group by date_format(order_time, '%Y%m') order by order_year_month;
+-- select p.id prefecture_id, p.name, round(avg(o.amount), 0) avg_amount from prefectures p
+-- inner join users u on u.prefecture_id = p.id
+-- inner join orders o on u.id = o.user_id group by p.id order by p.id;
+-- select p.id prefecture_id, p.name, date_format(o.order_time, '%Y%m') order_year_month, round(avg(o.amount), 0) avg_customer_spend from prefectures p
+-- inner join users u on u.prefecture_id = p.id
+-- inner join orders o on u.id = o.user_id group by date_format(o.order_time, '%Y%m'), p.id order by p.id, order_year_month;
 
