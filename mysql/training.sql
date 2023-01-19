@@ -138,5 +138,30 @@ where id not in (select user_id from orders where order_time >= '2017-12-01 00:0
 /* select id user_id, last_name, email from users
 where id in (select user_id from orders where order_time >= '2017-12-01 00:00:00' and order_time < '2018-01-01 00:00:00'); */
 
-select * from products
-where price > (select avg(price) from products) order by price desc, id asc;
+/* select * from products
+where price > (select avg(price) from products) order by price desc, id asc; */
+
+-- 条件分岐 case
+/* select
+ u.id user_id,
+ count(*) num,
+ case
+  when count(*) >= 5 then 'A'
+  when count(*) >= 2 then 'B'
+  else 'C'
+ end as user_rank
+from users u inner join orders o on u.id = o.user_id group by u.id order by user_rank asc; */
+
+/* select p.id, p.name,
+ case when sum(od.product_qty) is null then 0
+ else sum(od.product_qty) end as num
+from products p left outer join order_details od on p.id = od.product_id group by p.id; */
+
+select p.id product_id, p.name, sum(od.product_qty) product_qty,
+case
+ when sum(od.product_qty) >= 20 then 'A'
+ when sum(od.product_qty) >= 10 then 'B'
+ else 'C'
+end as product_rank
+from products p left outer join order_details od on p.id = od.product_id group by p.id order by product_rank;
+
