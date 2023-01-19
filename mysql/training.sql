@@ -129,3 +129,14 @@ as
 select p.name, count(*) count from users u inner join prefectures p on u.prefecture_id = p.id group by p.id; */
 -- select name, count from prefecture_user_counts; -- prefecture_user_countsという作成されたビューを呼び出し（sqlを実行）
 -- drop view prefecture_user_counts;
+
+
+-- サブクエリ
+/* select id, last_name, email from users
+where id not in (select user_id from orders where order_time >= '2017-12-01 00:00:00' and order_time < '2018-01-01 00:00:00'); */
+
+/* select id user_id, last_name, email from users
+where id in (select user_id from orders where order_time >= '2017-12-01 00:00:00' and order_time < '2018-01-01 00:00:00'); */
+
+select * from products
+where price > (select avg(price) from products) order by price desc, id asc;
