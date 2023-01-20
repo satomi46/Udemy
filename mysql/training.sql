@@ -194,7 +194,21 @@ where id in (select product_id from order_details group by product_id having sum
 -- select product_id from order_details group by product_id;
 /* delete from products
 where id not in (select product_id from order_details group by product_id); */
-select * from products;
 
+-- データベース構造の操作
+-- create database book_store;
+-- show databases;
+use book_store;
+-- show tables;
+-- create table books(id int not null auto_increment primary key, title varchar(255) not null);
+-- show tables;books
+-- show columns from books;
+-- alter table books add price int after id;
+-- alter table books change price unit_price int;
+-- alter table books drop unit_price;
+-- drop table books;
+-- show tables;
 
-
+-- show databases;
+-- drop database book_store;
+show databases;
