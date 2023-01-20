@@ -176,3 +176,25 @@ from products p left outer join order_details od on p.id = od.product_id group b
 -- inner join users u on u.prefecture_id = p.id
 -- inner join orders o on u.id = o.user_id group by date_format(o.order_time, '%Y%m'), p.id order by p.id, order_year_month;
 
+-- データの更新・削除
+-- insert into products (name, price) values ('新商品A', 1000);
+-- insert into products values (1002, '新商品B', 1500);
+-- insert into products (name, price) values ('新商品C', 3000), ('新商品D', 4000), ('新商品E', 5000);
+-- set sql_safe_updates = 0; -- 大量のデータ更新の許可
+-- update products set price = price * 0.9;
+-- update products set name = 'SQL入門' where id = 3;
+-- update products set name = 'SQL入門1', price = 1000 where id = 3;
+
+-- select product_id, sum(product_qty) from order_details group by product_id having sum(product_qty) >= 10;
+/* update products set price = price * 1.05
+where id in (select product_id from order_details group by product_id having sum(product_qty) >= 10); */
+
+-- delete from products_categories;
+-- delete from products where id = 1001;
+-- select product_id from order_details group by product_id;
+/* delete from products
+where id not in (select product_id from order_details group by product_id); */
+select * from products;
+
+
+
